@@ -4,6 +4,8 @@ const express = require('express');
 const app =express();
 
 const cors = require('cors');
+const connectToDB = require("./db/db")
+connectToDB(); //initiating connection to the database
 
 app.use(cors());
 app.get('/', (req, res) => {
