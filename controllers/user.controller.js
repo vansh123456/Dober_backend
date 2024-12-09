@@ -1,6 +1,7 @@
 const userModel = require('../models/user.model');
 const userService = require('../services/user.service');
 const {ValidationResult} = require('express-validator');
+const blackListTokenModel = require('../models/blacklistToken.model')
 
 module.exports.registerUser = async (req,res,next) => {
     const errors = validationResult(req);
@@ -19,6 +20,7 @@ module.exports.registerUser = async (req,res,next) => {
     });
 
     const token = user.generateAuthToken();
+    res.cookie('token',token) //we are saving the jwt token withing a cookie,not with localstorage
     res.status(201).json({token,user});
 }
 
@@ -41,4 +43,15 @@ module.exports.loginUser = async (req,res,next) => {
 
     const token = user.generateAuthToken();
     res.status(200).json({token,user});
+}
+module.exports.getUserProfile = async (req,res,next) => {
+    res.status(200).json(req.user); //status ALL-OK SEND BACK DATA OF USER
+    //req.user is populated by the middleware and info regarding data of user
+}
+module.exports.logoutUser = async(req,res,next) => {
+    res.clearCookie('token');
+    req.cookies.token || req.headers.authorisation.split(' ')[1];
+    //idhar we are separating the BEARER AND AUTH TOKEN
+    await blackListTokenModel.create({token});
+    res.status(200).json({message: 'Logged out successfully'});
 }
