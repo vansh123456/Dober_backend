@@ -9,9 +9,7 @@ router.post('/register',[ //we are sending this data to validation only
     body('password').isLength({
         min:6
     }).withMessage('Password must be at least 6 character long')
-],
-userController.registerUser
-)
+],userController.registerUser)
 
 router.post('/login',[
     body('email').isEmail().withMessage('invalid Email'),
