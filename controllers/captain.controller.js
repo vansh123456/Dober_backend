@@ -3,7 +3,7 @@ const captainService = require('../services/captain.service');
 const { validationResult } = require('express-validator');
 const blackListTokenModel = require('../models/blacklistToken.model')
 
-module.exports.registerCaptain = async(res,req,next) => {
+module.exports.registerCaptain = async(req,res,next) => {
     const errors = validationResult(req); //isme we are sending the validation in captain.routes.js to usme se hoke aaraha hai
     if(!errors.isEmpty()) {
         return res.status(400).json({
@@ -12,6 +12,7 @@ module.exports.registerCaptain = async(res,req,next) => {
     }
 
     const {fullname,email,password,vehicle} = req.body;
+    console.log(fullname)
     const isCaptainAlreadyExist = await captainModel.findOne({
         email
     });
