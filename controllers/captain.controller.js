@@ -67,6 +67,7 @@ module.exports.registerCaptain = async(req,res,next) => {
     }
 
     module.exports.getCaptainProfile = async(req,res,next) => {
+        console.log(req.captain)
         res.status(200).json({
             captain: req.captain
         })

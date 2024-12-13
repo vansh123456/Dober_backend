@@ -59,7 +59,8 @@ const captainSchema = new mongoose.Schema({
         vehicleType: {
             type: String,
             required: true,
-            enum: ['motorcycle', 'motorcycle', 'car'],
+            enum: [ 'car','moto', 'auto'],
+            message: '{VALUE} is not a valid vehicle type. Valid types are car, motorcycle, auto.',
         }
     },
     location:{
