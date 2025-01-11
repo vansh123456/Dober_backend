@@ -17,6 +17,7 @@ app.use(cookieParser());
 const userRoutes = require('./routes/user.routes');
 const captainRoutes = require("./routes/captain.routes") //constructing the captain route
 const  rideRoutes = require('./routes/ride.routes');
+const mapRoutes = require('./routes/maps.routes');
 
 
 app.get('/', (req, res) => {
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 app.use('/users',userRoutes); //extend the URL forming to userRoutes!
 app.use('/captains',captainRoutes)
 app.use('/rides',rideRoutes);
+app.use('/maps',mapRoutes);
 
 
 module.exports = app;
