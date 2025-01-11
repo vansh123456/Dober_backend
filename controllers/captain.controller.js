@@ -12,7 +12,7 @@ module.exports.registerCaptain = async(req,res,next) => {
     }
 
     const {fullname,email,password,vehicle} = req.body;
-    console.log(fullname)
+    //console.log(fullname)
     const isCaptainAlreadyExist = await captainModel.findOne({
         email
     });
@@ -41,7 +41,7 @@ module.exports.registerCaptain = async(req,res,next) => {
     
     const token = captain.generateAuthToken();
     res.status(201).json({
-        token,captain //returning the details of captain and jwt token generated:
+        captain,token //returning the details of captain and jwt token generated:
     });
 }
     module.exports.loginCaptain = async(req,res,next) => {
@@ -67,7 +67,7 @@ module.exports.registerCaptain = async(req,res,next) => {
     }
 
     module.exports.getCaptainProfile = async(req,res,next) => {
-        console.log(req.captain)
+        //console.log(req.captain)
         res.status(200).json({
             captain: req.captain
         })
