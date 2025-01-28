@@ -11,4 +11,10 @@ body('vehicleType').isString().isIn(['auto','car','moto']).withMessage('Invalid 
 router.get('/get-fare',authMiddleWare.authUser, query('pickup').isString().isLength({ min: 3 }).withMessage('Invalid pickup address'),
 query('destination').isString().isLength({ min: 3 }).withMessage('Invalid destination address'),rideController.getFare)
 
+router.post('/confirm',
+    authMiddleWare.authCaptain,
+    body('rideId').isMongoId().withMessage('Invalid ride id'),
+    rideController.confirmRide
+);
+
 module.exports = router;
